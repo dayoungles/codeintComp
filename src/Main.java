@@ -1,7 +1,37 @@
+
 public class Main {
 
     public static void main(String[] args) {
-        animalShelter();
+//        animalShelter();
+        Node reach = new Node("reach", null);
+        Node a = new Node("a", null);
+        Node b = new Node("b",null);
+        Node c = new Node("c", new Node[] {a, b});
+        Node d = new Node("c",new Node[] {a, reach, b, c});
+
+        Node[] children = {a, b, c, d};
+        Node start = new Node("start", children);
+        dfs(start, reach);
+    }
+
+
+    public static boolean dfs (Node start, Node reach) {
+        if (start == null || reach == null ||start.getChildren() == null) {
+            return false;
+        }
+
+        for (Node child : start.getChildren()) {
+            if (child == reach) {
+                System.out.println("get reached");
+                return true;
+            }
+            if (child.isVisited()) {
+                continue;
+            }
+            child.setVisited();
+            dfs(child, reach);
+        }
+        return true;
     }
 
     public static void animalShelter(){
