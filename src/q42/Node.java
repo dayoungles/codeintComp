@@ -1,3 +1,5 @@
+package q42;
+
 public class Node {
     String name;
     Node[] children;
